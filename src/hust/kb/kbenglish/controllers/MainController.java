@@ -1,5 +1,6 @@
 package hust.kb.kbenglish.controllers;
 
+import hust.kb.kbenglish.models.ConnectDBService;
 import hust.kb.kbenglish.views.MainFrame;
 
 public class MainController {
@@ -7,5 +8,6 @@ public class MainController {
 	
 	public MainController() {
 		main = new MainFrame();
+                
 	}
 }
