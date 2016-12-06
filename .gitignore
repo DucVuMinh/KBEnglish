@@ -1,0 +1,6 @@
+build/**
+npproject/**
+build.xml
+manifest.mf
+.classpath
+.project
