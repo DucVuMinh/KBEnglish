@@ -15,6 +15,7 @@ public class Book {
     private String namebook;
     private int typeBook;
     private int timeneed;
+    private Level levelOfBook;
 
     public Book(int idBook, String namebook, int typeBook, int timeneed) {
         this.idBook = idBook;
@@ -56,6 +57,37 @@ public class Book {
 
     public void setTimeneed(int timeneed) {
         this.timeneed = timeneed;
+    }
+
+    public Level getLevelOfBook() {
+        return levelOfBook;
+    }
+
+    public void setLevelOfBook(Level levelOfBook) {
+        this.levelOfBook = levelOfBook;
+    }
+    
+    /**
+     * Add object to database
+     * return id object
+     */
+    
+    public int add(){
+        return 0;
+    }
+    /**
+     * delete object from data base
+     * @return number row delete
+     */
+    public int delete(){
+        return 0;
+    }
+    /**
+     * 
+     */
+    public static Book getBookById(){
+        
+        return null;
     }
     
 }
