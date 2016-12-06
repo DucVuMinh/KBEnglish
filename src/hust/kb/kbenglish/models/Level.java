@@ -5,14 +5,22 @@
  */
 package hust.kb.kbenglish.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+
 /**
  *
  * @author DucVu
  */
 public class Level {
+
     private int idLevel;
     private String namelevel;
     private String scoreDescription;
+    private static String queryGetLevelById = "SELECT * FROM knowledgebasedsystem.level where id=?";
 
     public Level() {
     }
@@ -46,7 +54,27 @@ public class Level {
     public void setScoreDescription(String scoreDescription) {
         this.scoreDescription = scoreDescription;
     }
-    public static Level getLevelById(int id){
+
+    public static Level getLevelById(int id) {
+        Connection cn = ConnectDBService.getConnection();
+        try {
+            PreparedStatement pstmt
+                    = cn.prepareStatement(queryGetLevelById);
+            //set id for select sql java
+            pstmt.setInt(1, id);
+            ResultSet rs=pstmt.executeQuery();
+            if(!rs.first()){
+                return null;
+            }else{
+                return new Level(rs.getInt("id"), rs.getString("namelevel"), rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         return null;
     }
+//    public static void main(String args[]){
+//        Level temp=getLevelById(1);
+//        System.out.println(temp.getNamelevel());
+//    }
 }
