@@ -5,4 +5,5 @@ public class Rule {
 	private Level currentLevel;
 	private Level goalLevel;
 	private Book bookNeed;
+	
 }
