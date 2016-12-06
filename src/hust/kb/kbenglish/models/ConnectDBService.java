@@ -12,15 +12,19 @@ public class ConnectDBService {
 	public static String PASSWORD = "1234567";
 	public static Connection connection;
 	
-	public static Connection getConnection() throws SQLException {
+	public static Connection getConnection() {
+            try{
 		if (connection == null )
 			connection = DriverManager.getConnection(DATABASE, USER_NAME, PASSWORD);
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
 		return connection;
 	}
         public static void main(String args[]){
             try {
                 getConnection();
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(ConnectDBService.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

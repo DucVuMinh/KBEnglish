@@ -16,6 +16,7 @@ public class Book {
     private int typeBook;
     private int timeneed;
     private Level levelOfBook;
+    
 
     public Book(int idBook, String namebook, int typeBook, int timeneed) {
         this.idBook = idBook;
