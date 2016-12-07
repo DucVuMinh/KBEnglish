@@ -4,3 +4,4 @@ build.xml
 manifest.mf
 .classpath
 .project
+src/hust/kb/kbenglish/models/Config.java
