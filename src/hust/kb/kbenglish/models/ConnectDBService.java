@@ -3,23 +3,25 @@ package hust.kb.kbenglish.models;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnectDBService {
-	public static String DATABASE = "jdbc:mariadb://localhost:6688/knowledgebasedsystem";
-	public static String USER_NAME = "root";
-	public static String PASSWORD = "1234567";
 	public static Connection connection;
 	
 	public static Connection getConnection() {
             try{
 		if (connection == null )
-			connection = DriverManager.getConnection(DATABASE, USER_NAME, PASSWORD);
+			connection = DriverManager.getConnection(Config.DATABASE, Config.USER_NAME, Config.PASSWORD);
             }catch(SQLException ex){
                 ex.printStackTrace();
             }
 		return connection;
+	}
+	
+	public static Statement getStatement() throws SQLException {
+		return getConnection().createStatement();
 	}
         public static void main(String args[]){
             try {
