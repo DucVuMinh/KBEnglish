@@ -21,7 +21,7 @@ public class Level {
     private String namelevel;
     private String scoreDescription;
     private static String queryGetLevelById = "SELECT * FROM knowledgebasedsystem.level where id=?";
-
+    
     public Level() {
     }
 
@@ -72,6 +72,22 @@ public class Level {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public Level getReadingLevel() {
+    	Level readingLevel = new Level();
+    	readingLevel.setIdLevel(idLevel + 7);
+    	return readingLevel;
+    }
+    
+    public Level getWritingLevel() {
+    	Level writingLevel = new Level();
+    	writingLevel.setIdLevel(idLevel + 14);
+    	return writingLevel;
+    }
+    
+    public boolean greatThan(Level level) {
+    	return idLevel >= level.getIdLevel();
     }
 //    public static void main(String args[]){
 //        Level temp=getLevelById(1);
