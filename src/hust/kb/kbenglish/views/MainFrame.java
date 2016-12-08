@@ -150,6 +150,7 @@ public class MainFrame extends JFrame {
 		int scoreReading = Integer.parseInt(currentRead.getText());
 		int scoreWriting = Integer.parseInt(currentListen.getText());
 		int scoreSum = scoreReading + scoreWriting;
+                
 		try {
 			Level levelReading = RuleCreateLevel.getRuleByScore(scoreReading, RuleCreateLevel.TYPE_READING).getLevel();
 			Level levelWriting = RuleCreateLevel.getRuleByScore(scoreWriting, RuleCreateLevel.TYPE_LISTENING).getLevel();

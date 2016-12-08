@@ -13,7 +13,7 @@ public class ConnectDBService {
 	public static Connection getConnection() {
             try{
 		if (connection == null )
-			connection = DriverManager.getConnection(Config.DATABASE, Config.USER_NAME, Config.PASSWORD);
+			connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/knowledgebasedsystem", Config.USER_NAME, Config.PASSWORD);
             }catch(SQLException ex){
                 ex.printStackTrace();
             }

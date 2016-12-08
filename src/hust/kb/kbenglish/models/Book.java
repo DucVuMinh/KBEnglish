@@ -21,6 +21,7 @@ public class Book {
     private int typeBook;
     private int timeneed;
     private Level levelOfBook;
+    private static String queryGetBookById;
     
 
     public Book(int idBook, String namebook, int typeBook, int timeneed) {
