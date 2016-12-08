@@ -12,12 +12,12 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import hust.kb.kbenglish.models.Book;
 import hust.kb.kbenglish.models.Level;
@@ -29,8 +29,9 @@ public class MainFrame extends JFrame {
 	public static String INPUT_TITLE = "Thông tin đầu vào";
 	public static String INPUT_CURRENT_READ = "Điểm đọc hiện tại";
 	public static String INPUT_CURRENT_LISTEN = "Điểm nghe hiện tại";
-	public static String INPUT_TARGET_LEVER = "Mục tiêu muốn đạt";
+	public static String INPUT_TARGET_LEVER = "Số điểm muốn đạt";
 	public static String INPUT_TARGET_TIME = "Thời gian cần đạt mục tiêu";
+	public static String INPUT_TIME_IN_DAY = "Số giờ học một ngày";
 	public static String INPUT_CANCEL = "Hủy";
 	public static String INPUT_NEXT = "Tiếp theo";
 
@@ -45,8 +46,9 @@ public class MainFrame extends JFrame {
 	private Container cp;
 	private JPanel inputPanel;
 	private JPanel outputPanel;
-	private JTextField currentRead, currentListen, targetLever, targetTime;
+	private JTextField currentRead, currentListen, targetLever, targetTime, timeInDay;
 	private JButton cancel, next, again, exit;
+	private JLabel posibility;
 
 	public MainFrame() {
 		main = this;
@@ -54,7 +56,7 @@ public class MainFrame extends JFrame {
 		// Panel input =======================================
 		inputPanel = new JPanel();
 		inputPanel.setBorder(new TitledBorder(INPUT_TITLE));
-		inputPanel.setLayout(new GridLayout(5, 2));
+		inputPanel.setLayout(new GridLayout(6, 2));
 
 		inputPanel.add(new Label(INPUT_CURRENT_LISTEN));
 		currentListen = new JTextField(10);
@@ -70,7 +72,12 @@ public class MainFrame extends JFrame {
 
 		inputPanel.add(new Label(INPUT_TARGET_TIME));
 		targetTime = new JTextField(10);
+		targetTime.setToolTipText("Nhập số tháng");
 		inputPanel.add(targetTime);
+		
+		inputPanel.add(new Label(INPUT_TIME_IN_DAY));
+		timeInDay = new JTextField(10);
+		inputPanel.add(timeInDay);
 
 		cancel = new JButton(INPUT_CANCEL);
 		cancel.addActionListener(new ActionListener() {
@@ -101,15 +108,17 @@ public class MainFrame extends JFrame {
 		outputPanel.setLayout(new BorderLayout());
 
 		outputPanel.add(new Label(OUTPUT_LIST_BOOK), BorderLayout.NORTH);
-		/*String[][] table = new String[0][3];
-		JTable listBook = new JTable(table, OUTPUT_BOOK_COLUMN);
-		
-		outputPanel.add(listBook, BorderLayout.CENTER);*/
+		/*
+		 * String[][] table = new String[0][3]; JTable listBook = new
+		 * JTable(table, OUTPUT_BOOK_COLUMN);
+		 * 
+		 * outputPanel.add(listBook, BorderLayout.CENTER);
+		 */
 
 		JPanel southPanel = new JPanel(new GridLayout(2, 2));
-		String possibility = "70%";
+		posibility = new JLabel("%");
 		southPanel.add(new Label(OUTPUT_POSSIBILITY));
-		southPanel.add(new Label(possibility));
+		southPanel.add(posibility);
 
 		again = new JButton(OUTPUT_AGAIN);
 		again.addActionListener(new ActionListener() {
@@ -147,30 +156,40 @@ public class MainFrame extends JFrame {
 	}
 
 	public void inputClickNext() {
-		int scoreReading = Integer.parseInt(currentRead.getText());
-		int scoreWriting = Integer.parseInt(currentListen.getText());
-		int scoreSum = scoreReading + scoreWriting;
 		try {
+			int scoreReading = Integer.parseInt(currentRead.getText());
+			int scoreWriting = Integer.parseInt(currentListen.getText());
+			int scoreTarget = Integer.parseInt(targetLever.getText());
+			int scoreSum = scoreReading + scoreWriting;
 			Level levelReading = RuleCreateLevel.getRuleByScore(scoreReading, RuleCreateLevel.TYPE_READING).getLevel();
-			Level levelWriting = RuleCreateLevel.getRuleByScore(scoreWriting, RuleCreateLevel.TYPE_LISTENING).getLevel();
+			Level levelWriting = RuleCreateLevel.getRuleByScore(scoreWriting, RuleCreateLevel.TYPE_LISTENING)
+					.getLevel();
 			Level levelSum = RuleCreateLevel.getRuleByScore(scoreSum, RuleCreateLevel.TYPE_SUM).getLevel();
-			Level levelTarget = RuleCreateLevel.getRuleByScore(Integer.parseInt(targetLever.getText()), RuleCreateLevel.TYPE_SUM).getLevel();
+			Level levelTarget = RuleCreateLevel.getRuleByScore(scoreTarget, RuleCreateLevel.TYPE_SUM).getLevel();
 			Level targetReading = levelTarget.getReadingLevel();
 			Level targetWriting = levelTarget.getWritingLevel();
 			List<Book> books = Rule.getBooks(levelSum, levelTarget);
 			books.addAll(Rule.getBooks(levelReading, targetReading));
 			books.addAll(Rule.getBooks(levelWriting, targetWriting));
-			for (Book book : books) 
+			int sumNeed = 0;
+			for (Book book : books) {
 				book.loadData();
+				sumNeed += book.getTimeneed();
+			}
+			int timeNeed = Integer.parseInt(targetTime.getText());
+			int dayTime = Integer.parseInt(timeInDay.getText());
+			int sumTime = timeNeed * 30 * dayTime;
+			double posibilityNumber = (sumTime * 0.8 * 100) / sumNeed;
+			posibility.setText(posibilityNumber + "%");
 			JTable listBook = new JTable(Book.createBookTable(books), OUTPUT_BOOK_COLUMN);
 			outputPanel.add(listBook, BorderLayout.CENTER);
-		} catch (SQLException e) {
+			inputPanel.setVisible(false);
+			outputPanel.setVisible(true);
+			pack();
+		} catch (SQLException | NumberFormatException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Nhập dữ liệu không đúng");
 		}
-		inputPanel.setVisible(false);
-		outputPanel.setVisible(true);
-		pack();
 	}
 
 	public void outputClickAgain() {
