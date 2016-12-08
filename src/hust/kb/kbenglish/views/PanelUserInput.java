@@ -41,7 +41,7 @@ public class PanelUserInput extends javax.swing.JPanel {
         tfListeningScore = new javax.swing.JTextField();
         cbduration = new javax.swing.JComboBox<>();
         lbduration = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbHeader = new javax.swing.JLabel();
 
         btResult.setText("Show result");
 
@@ -65,6 +65,8 @@ public class PanelUserInput extends javax.swing.JPanel {
         lbduration.setText("Duration(Months)");
         lbduration.setToolTipText("number month you want to get this goal");
 
+        lbHeader.setIcon(new javax.swing.ImageIcon("/home/ducvu/Desktop/logo-bk-rgb.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,29 +83,29 @@ public class PanelUserInput extends javax.swing.JPanel {
                             .addComponent(lbreading)
                             .addComponent(lbListeningScore)
                             .addComponent(lbduration))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbduration, 0, 131, Short.MAX_VALUE)
                             .addComponent(cbgoalLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfReadinScore)
                             .addComponent(tfListeningScore))))
                 .addGap(70, 70, 70))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbreading)
-                    .addComponent(tfReadinScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lbListeningScore))
+                        .addGap(55, 55, 55)
+                        .addComponent(tfReadinScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfListeningScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(tfListeningScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(63, 63, 63)
+                        .addComponent(lbreading)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbListeningScore)))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -113,7 +115,7 @@ public class PanelUserInput extends javax.swing.JPanel {
                     .addComponent(cbduration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbduration))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btResult)
                 .addGap(32, 32, 32))
@@ -196,8 +198,8 @@ public class PanelUserInput extends javax.swing.JPanel {
     private javax.swing.JButton btResult;
     private javax.swing.JComboBox<String> cbduration;
     private javax.swing.JComboBox<String> cbgoalLevel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbHeader;
     private javax.swing.JLabel lbListeningScore;
     private javax.swing.JLabel lbduration;
     private javax.swing.JLabel lbreading;

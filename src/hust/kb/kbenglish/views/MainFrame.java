@@ -16,13 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import hust.kb.kbenglish.models.Book;
 import hust.kb.kbenglish.models.Level;
 import hust.kb.kbenglish.models.Rule;
 import hust.kb.kbenglish.models.RuleCreateLevel;
+import javax.swing.JLabel;
 
 public class MainFrame extends JFrame {
 	public static String TITLE = "Hệ tư vấn học tiếng anh";
@@ -47,10 +46,13 @@ public class MainFrame extends JFrame {
 	private JPanel outputPanel;
 	private JTextField currentRead, currentListen, targetLever, targetTime;
 	private JButton cancel, next, again, exit;
+        private JLabel lbHeader = new javax.swing.JLabel();
+
 
 	public MainFrame() {
 		main = this;
-
+                
+                lbHeader.setIcon(new javax.swing.ImageIcon("/home/ducvu/Desktop/logo-bk-rgb.png")); 
 		// Panel input =======================================
 		inputPanel = new JPanel();
 		inputPanel.setBorder(new TitledBorder(INPUT_TITLE));
@@ -133,8 +135,10 @@ public class MainFrame extends JFrame {
 		});
 		southPanel.add(exit);
 		outputPanel.add(southPanel, BorderLayout.SOUTH);
-
+                
+                
 		cp = getContentPane();
+                cp.add(lbHeader);
 		cp.setLayout(new FlowLayout());
 		cp.add(inputPanel);
 		cp.add(outputPanel);
