@@ -24,7 +24,6 @@ import hust.kb.kbenglish.models.Book;
 import hust.kb.kbenglish.models.Level;
 import hust.kb.kbenglish.models.Rule;
 import hust.kb.kbenglish.models.RuleCreateLevel;
-import javax.swing.JLabel;
 
 public class MainFrame extends JFrame {
 	public static String TITLE = "Hệ tư vấn học tiếng anh";
@@ -55,8 +54,8 @@ public class MainFrame extends JFrame {
 
 	public MainFrame() {
 		main = this;
-                
-		lbHeader.setIcon(new ImageIcon("/home/ducvu/Desktop/logo-bk-rgb.png")); 
+        lbHeader = new JLabel();
+		lbHeader.setIcon(new ImageIcon("img/logo-bk-rgb.png")); 
 		// Panel input =======================================
 		inputPanel = new JPanel();
 		inputPanel.setBorder(new TitledBorder(INPUT_TITLE));
